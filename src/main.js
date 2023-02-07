@@ -1,9 +1,21 @@
-import { createApp } from 'vue'
-import App from './App.vue'
-import router from './router'
-import './assets/common.css'
+import { createApp } from 'vue';
+import App from './App.vue';
+import router from './routes/index';
+import store from '@/store/index';
+import './assets/common.css';
 
-const app = createApp(App)
-app.use(router).mount('#app')
+createApp(App).use(store).use(router).mount('#app');
 
-//git user info altered
+
+
+// const app = createApp(App);
+// app.use(store);
+// app.use(router);
+// app.mount('#app');
+
+
+// new Vue({
+//   render: h => h(App),
+//   router,
+//   store,
+// }).$mount('#app');

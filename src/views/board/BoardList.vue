@@ -1,27 +1,26 @@
 <template>
   <div class="board-list">
+    <table class="w3-table-all" summary="연습용 자유 게시판">
+      <caption>
+        자유 게시판
+      </caption>
+      <thead>
+        <tr>
+          <th v-for="header, idx in boardHeader" :key="idx" scope="col" v-bind:id="header" > {{header}} </th>
+        </tr>
+      </thead>
+      <!-- <tfoot>
+      </tfoot> -->
+      <tbody>
+      <tr v-for="(row, idx) in boardList" :key="idx" scope="row">
+        <td v-for="(key, idx) in row" :key="idx">{{key}}</td>
+      </tr>
+      </tbody>      
+    </table>
     <div class="common-buttons">
       <button type="button" class="w3-button w3-round w3-blue-gray" v-on:click="fnWrite">등록</button>
     </div>
-    <table class="w3-table-all">
-      <thead>
-      <tr>
-        <th>No</th>
-        <th>제목</th>
-        <th>작성자</th>
-        <th>등록일시</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr v-for="(row, idx) in list" :key="idx">
-        <td>{{ row.idx }}</td>
-        <td><a v-on:click="fnView(`${row.idx}`)">{{ row.title }}</a></td>
-        <td>{{ row.author }}</td>
-        <td>{{ row.created_at }}</td>
-      </tr>
-      </tbody>
-    </table>
-    <!-- <div class="pagination w3-bar w3-padding-16 w3-small" v-if="paging.total_list_cnt > 0"> -->
+    <!-- <div class="pagination w3-bar w3-padding-16 w3-small" v-if="paging.total_list_cnt > 0" />
     <div class="pagination w3-bar w3-padding-16 w3-small">
       <span class="pg">
       <a href="#;" @click="fnPage(1)" class="first w3-button w3-border">{{'<<'}}</a>
@@ -39,68 +38,42 @@
          @click="fnPage(`${paging.end_page+1}`)" class="next w3-button w3-border">{{'>'}}</a>
       <a href="javascript:;" @click="fnPage(`${paging.total_page_cnt}`)" class="last w3-button w3-border">{{'>>'}}</a>
       </span>
-    </div>
+    </div> -->
   </div>
 </template>
 
 <script>
+import {fetchBoard} from '../../api/board';
+import _ from 'lodash';
+
 export default {
-  data() { //변수생성
+  data() {
     return {
-      requestBody: {}, //리스트 페이지 데이터전송
-      list: {}, //리스트 데이터
-      no: '', //게시판 숫자처리
-      paging: {
-        block: 0,
-        end_page: 0,
-        next_block: 0,
-        page: 0,
-        page_size: 0,
-        prev_block: 0,
-        start_index: 0,
-        start_page: 0,
-        total_block_cnt: 0,
-        total_list_cnt: 0,
-        total_page_cnt: 0,
-      }, //페이징 데이터
-      page: this.$route.query.page ? this.$route.query.page : 1,
-      size: this.$route.query.size ? this.$route.query.size : 10,
-      keyword: this.$route.query.keyword,
-      paginavigation: function () { //페이징 처리 for문 커스텀
-        let pageNumber = [] //;
-        let start_page = this.paging.start_page;
-        let end_page = this.paging.end_page;
-        for (let i = start_page; i <= end_page; i++) pageNumber.push(i);
-        return pageNumber;
-      }
+      //boardHeader: ['No', 'Category', '제목', '작성자', '등록일시', '조회수', '추천수', '댓글수'],
+      boardHeader: [],
+      boardList: [],
     }
-  },
+  },  
   mounted() {
     this.GetList()
   },
   methods: {
-    GetList() {
-      this.list = [
-        {
-            "idx":1,
-            "title": "제목1",
-            "author": "작성자1",
-            "created_at": "작성일시1"
-        },
-        {
-            "idx":2,
-            "title": "제목2",
-            "author": "작성자2",
-            "created_at": "작성일시2"
-        },
-        {
-            "idx":3,
-            "title": "제목3",
-            "author": "작성자3",
-            "created_at": "작성일시3"
-        }
-      ]
-    }
-    }
+    async GetList() {
+        this.isLoading = true;
+        const {data:rawBoardList} = await fetchBoard();        
+        this.isLoading = false;
+
+        const filteredBoardList = rawBoardList.map(
+          post => _.pickBy(post, (value) => { return !_.isNil(value) })
+        );
+        this.boardList = filteredBoardList;
+
+        this.InitHeader(Object.keys(filteredBoardList[0]));
+      },
+      InitHeader(boardHeader) {
+        this.boardHeader=boardHeader;
+    },
+  },
 }
+
 </script>
