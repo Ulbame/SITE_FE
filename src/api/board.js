@@ -6,4 +6,8 @@ function fetchBoard() {
   return instance.get('/board/list');
 }
 
-export { fetchBoard };
+function fetchPost(index) {
+  return instance.get('/board/post/'+index);
+}
+
+export { fetchBoard, fetchPost };
