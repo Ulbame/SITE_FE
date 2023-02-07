@@ -17,5 +17,13 @@
 
 .common-buttons {
     padding: 8px;
-    text-align: right;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    font-weight:bold;
+    color:green;
 }

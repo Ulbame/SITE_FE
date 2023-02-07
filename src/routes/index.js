@@ -2,7 +2,9 @@
 import { createRouter, createWebHistory } from 'vue-router';
 
 import PageHome from '@/views/PageHome.vue';
-import BoardList from '@/views/board/BoardList.vue';
+import BoardPage from '@/views/board/BoardPage.vue';
+import PostListPage from '@/views/board/PostListPage.vue';
+import PostDetail from '@/views/board/PostDetailPage.vue';
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
@@ -16,12 +18,22 @@ const router = createRouter({
       path: '/about',
       name: 'About',
       //meta: { auth: true },
-      component: () => import('../views/PageAbout.vue'),
+      component: () => import('@/views/PageAbout.vue'),
     },
     {
-      path: '/board/list',
-      name: 'BoardList',
-      component: BoardList
+      path: '/board',
+      component: BoardPage,
+      redirect: '/board/list',
+      children: [
+        {
+          path: 'list',
+          component: PostListPage
+        },
+        {
+          path: 'post/:idx',
+          component: PostDetail,
+        },
+      ],
     },
     {
       path: '/:pathMatch(.*)',
