@@ -36,9 +36,9 @@ export default {
       tableHeader: [],
       postList: [],
     }
-  },  
+  },
   mounted() {
-    this.GetList()
+    this.GetList();
   },
   methods: {
     async GetList() {

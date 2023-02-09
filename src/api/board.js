@@ -1,7 +1,5 @@
-// 학습 노트 조작과 관련된 CRUD API 함수 파일
 import { instance } from './index';
 
-// 학습 노트 데이터 목록을 조회하는 API
 function fetchBoard() {
   return instance.get('/board/list');
 }
@@ -10,4 +8,16 @@ function fetchPost(index) {
   return instance.get('/board/post/'+index);
 }
 
-export { fetchBoard, fetchPost };
+function createPost(post) {
+  return instance.post('/board/post', post);
+}
+
+function updatePost(post) {
+  return instance.patch('/board/post', post);
+}
+
+function deletePost(postIndex) {
+  return instance.delete('/board/post/'+postIndex);
+}
+
+export { fetchBoard, fetchPost, createPost, deletePost, updatePost };

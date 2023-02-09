@@ -4,7 +4,8 @@ import { createRouter, createWebHistory } from 'vue-router';
 import PageHome from '@/views/PageHome.vue';
 import BoardPage from '@/views/board/BoardPage.vue';
 import PostListPage from '@/views/board/PostListPage.vue';
-import PostDetail from '@/views/board/PostDetailPage.vue';
+import PostDetailPage from '@/views/board/PostDetailPage.vue';
+import PostWritePage from '@/views/board/PostWritePage.vue';
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
@@ -31,8 +32,16 @@ const router = createRouter({
         },
         {
           path: 'post/:idx',
-          component: PostDetail,
+          component: PostDetailPage,
         },
+        {
+          path: 'edit/:idx',
+          component: PostWritePage,
+        },
+        {
+          path: 'write',
+          component: PostWritePage,
+        }
       ],
     },
     {
