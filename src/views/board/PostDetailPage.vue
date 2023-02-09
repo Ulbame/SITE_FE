@@ -1,61 +1,75 @@
 <template>
   <div class="post-detail">
     <div class="post-contents">
-      <h3>{{ this.post.title }}</h3>
+      <h3>{{ post.title }}</h3>
       <div>
-        <strong class="w3-large">{{ this.post.creatorId }}</strong>
+        <strong class="w3-large">{{ post.creatorId }}</strong>
         <br>
-        <span>{{ this.post.createdDatetime }}</span>
+        <span>{{ post.createdDatetime }}</span>
       </div>
     </div>
     <div class="post-contents">
-      <span>{{ this.post.contents }}</span>
-    </div>
-    <div class="common-buttons">
-      <button type="button" class="w3-button w3-round w3-blue-gray" v-on:click="fnUpdate">수정</button>&nbsp;
-      <button type="button" class="w3-button w3-round w3-red" v-on:click="fnDelete">삭제</button>&nbsp;
-      <button type="button" class="w3-button w3-round w3-gray" v-on:click="fnList">목록</button>
+      <span>{{ post.contents }}</span>
     </div>
   </div>
-  <PostList></PostList>
+  <div class="common-buttons">
+      <router-link to="/board/list/">
+        <button type="button" id="button" class="w3-button w3-round w3-gray">목록</button>
+      </router-link>
+      <router-link to="/board/write">
+        <button type="button" id="button" class="w3-button w3-round w3-blue">등록</button>
+      </router-link>
+      <router-link :to="`/board/edit/${idx}`">
+        <button type="button" id="button" class="w3-button w3-round w3-blue-gray">수정</button>
+      </router-link>
+      <button type="button" id="button" class="w3-button w3-round w3-red" @click="removePost" >삭제</button>
+      
+  </div>
+  <!-- <PostList></PostList> -->
 </template>
 
 <script>
-import {fetchPost} from "@/api/board";
-import PostList from "@/components/PostList.vue"
+import {fetchPost, deletePost } from "@/api/board";
+// import PostList from "@/components/PostList.vue"
 
 export default {
   components: {
-    PostList,
+    // PostList,
   },
-  data() { //변수생성
+  data() {
     return {
-      idx: this.$router.currentRoute._value.params.idx,
-      post: [],
+      idx: this.$route.params.idx,
+      post: {},
     }
   },
   mounted() {
-    this.GetPost(this.idx);
+    this.idx= this.$route.params.idx;
+    this.getPost(this.idx);
+  },
+  updated() {
+    this.idx = this.$route.params.idx;
+  },
+  watch: {
+    idx: function(value, oldValue) {
+      console.log(`이전 게시물 번호 : ${oldValue}, 현재 게시물 번호 : ${value}`);
+      this.getPost(value);
+    }
   },
   methods: {
-    async GetPost(postIndex) {
-        this.isLoading = true;
-        const {data:rawPost} = await fetchPost(postIndex);
-        this.isLoading = false;
-        console.log(rawPost);
-        this.InitPost(rawPost);
-      },
-      InitPost(post) {
-        this.post=post;
+    async getPost(postIndex) {
+      const {data:post} = await fetchPost(postIndex);
+      this.initPost(post);
     },
+    initPost(post) {
+      this.post=post;
     },
-    List() {
-    },
-    Write() {
-    },
-    Delete() {
+    async removePost() {
       if (!confirm("삭제하시겠습니까?")) return;
+      await deletePost(this.idx);
+      alert('삭제되었습니다!'); 
+      this.$router.push('/board/list');
     }
+  },
 }
 </script>
 <style scoped>
