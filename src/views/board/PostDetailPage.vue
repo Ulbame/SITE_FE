@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import {fetchPost, deletePost } from "@/api/board";
+import {fetchPost, deletePost } from "@/api/post";
 // import PostList from "@/components/PostList.vue"
 
 export default {

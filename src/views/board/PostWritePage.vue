@@ -35,7 +35,7 @@
 
 <script>
 import _ from 'lodash';
-import {fetchPost, createPost, updatePost} from '@/api/board';
+import {fetchPost, createPost, updatePost} from '@/api/post';
 
 export default {
   data() {
