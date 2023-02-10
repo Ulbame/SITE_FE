@@ -7,11 +7,10 @@
       <router-link to="/board">게시판</router-link>
     </div>
   </header>
-  <hr/>
 </template>
 
 <script>
-    export default {}
+export default {};
 </script>
 
 <style scoped>

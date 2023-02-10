@@ -1,9 +1,8 @@
 import { createStore } from 'vuex';
 
-const store =  createStore({
+const store = createStore({
   state() {
-    return {
-    }
+    return {};
   },
 });
 
