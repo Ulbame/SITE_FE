@@ -28,7 +28,7 @@ const router = createRouter({
       children: [
         {
           path: 'list',
-          component: PostListPage
+          component: PostListPage,
         },
         {
           path: 'post/:idx',
@@ -41,14 +41,14 @@ const router = createRouter({
         {
           path: 'write',
           component: PostWritePage,
-        }
+        },
       ],
     },
     {
       path: '/:pathMatch(.*)',
       component: () => import('../views/NotFoundPage.vue'),
     },
-  ]
+  ],
 });
 
 // 라우팅 가드? 용 소스
