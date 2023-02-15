@@ -12,52 +12,29 @@
       <div class="post-contents">
         <span>{{ post.contents }}</span>
       </div>
+      <PostButtons :idx="idx" :buttonActivator="buttonActivator" />
     </div>
-    <div class="common-buttons">
-      <router-link to="/board/list/">
-        <button type="button" id="button" class="w3-button w3-round w3-gray">
-          목록
-        </button>
-      </router-link>
-      <router-link to="/board/write">
-        <button type="button" id="button" class="w3-button w3-round w3-blue">
-          등록
-        </button>
-      </router-link>
-      <router-link :to="`/board/edit/${idx}`">
-        <button
-          type="button"
-          id="button"
-          class="w3-button w3-round w3-blue-gray"
-        >
-          수정
-        </button>
-      </router-link>
-      <button
-        type="button"
-        id="button"
-        class="w3-button w3-round w3-red"
-        @click="removePost"
-      >
-        삭제
-      </button>
-    </div>
-    <!-- <PostList></PostList> -->
   </div>
 </template>
 
 <script>
-import { fetchPost, deletePost } from '@/api/post';
-// import PostList from "@/components/PostList.vue"
+import { fetchPost } from '@/api/post';
+import PostButtons from '@/components/PostButtons.vue';
 
 export default {
   components: {
-    // PostList,
+    PostButtons,
   },
   data() {
     return {
       idx: this.$route.params.idx,
       post: {},
+      buttonActivator: {
+        list: true,
+        edit: true,
+        write: true,
+        delete: true,
+      },
     };
   },
   mounted() {
@@ -82,12 +59,6 @@ export default {
     },
     initPost(post) {
       this.post = post;
-    },
-    async removePost() {
-      if (!confirm('삭제하시겠습니까?')) return;
-      await deletePost(this.idx);
-      alert('삭제되었습니다!');
-      this.$router.push('/board/list');
     },
   },
 };

@@ -1,11 +1,8 @@
 <template>
-  <div>
+  <div class="root">
     <PageHeader />
-    <!-- 헤더 컴포넌트 -->
     <router-view />
-    <!-- 페이지 이동이 표시될 곳 -->
     <PageFooter />
-    <!-- 푸터 컴포넌트 -->
   </div>
 </template>
 
@@ -29,5 +26,13 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+}
+.root {
+  /* left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%); */
+  height: 1080px;
+  width: 1920px;
+  justify-content: center;
 }
 </style>

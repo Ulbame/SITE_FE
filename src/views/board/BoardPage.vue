@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <h1>자유 게시판</h1>
+  <div class="board-page">
+    <!-- <router-view :key="$route.url"></router-view> -->
     <router-view></router-view>
   </div>
 </template>
@@ -9,4 +9,9 @@
 export default {};
 </script>
 
-<style></style>
+<style>
+.board-page {
+  position: relative;
+  left: 22%;
+}
+</style>

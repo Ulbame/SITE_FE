@@ -1,40 +1,4 @@
 /* common.css */
-.board-list {
-    width: 768px;
-    margin: auto;
-}
-
-.board-detail {
-    width: 768px;
-    margin: auto;
-    text-align: left;
-}
-
-.board-contents {
-    border-bottom: 1px solid #eee;
-}
-
-.board-contents>input {
-    margin: 8px;
-}
-
-.board-contents>textarea {
-    margin: 8px;
-}
-
-.common-buttons {
-    padding: 8px;
-}
-
-.common-buttons>button {
-    margin: 4px;
-}
-
 a {
     text-decoration: none;
-}
-
-a:hover {
-    font-weight:bold;
-    color:green;
 }

@@ -9,6 +9,7 @@ import PostWritePage from '@/views/board/PostWritePage.vue';
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
+  duplicateNavigationPolicy: 'reload',
   routes: [
     {
       path: '/',
@@ -22,20 +23,20 @@ const router = createRouter({
       component: () => import('@/views/PageAbout.vue'),
     },
     {
-      path: '/board',
+      path: '/post',
       component: BoardPage,
-      redirect: '/board/list',
+      redirect: '/post/list',
       children: [
         {
           path: 'list',
           component: PostListPage,
         },
         {
-          path: 'post/:idx',
+          path: ':idx',
           component: PostDetailPage,
         },
         {
-          path: 'edit/:idx',
+          path: ':idx/edit',
           component: PostWritePage,
         },
         {
@@ -50,15 +51,5 @@ const router = createRouter({
     },
   ],
 });
-
-// 라우팅 가드? 용 소스
-// router.beforeEach((to, from, next) => {
-//   if (to.meta.auth && !store.getters.isLogin) {
-//     alert('인증이 필요합니다.');
-//     next('/login');
-//     return;
-//   }
-//   next();
-// });
 
 export default router;
