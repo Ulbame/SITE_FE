@@ -12,6 +12,6 @@ export default {};
 <style>
 .board-page {
   position: relative;
-  left: 22%;
+  margin: auto;
 }
 </style>

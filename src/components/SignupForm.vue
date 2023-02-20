@@ -1,0 +1,96 @@
+<template>
+  <div>
+    <div>
+      <h2>Please Sign Up</h2>
+      <div id="signupForm">
+        <form @submit.prevent="signup">
+          <p>
+            ID :
+            <input
+              class="w3-input"
+              name="uid"
+              placeholder="Enter your ID"
+              v-model="user_id"
+            />
+          </p>
+          <p>
+            PASSWORD :
+            <input
+              name="password"
+              class="w3-input"
+              placeholder="Enter your password"
+              v-model="user_pw"
+              type="password"
+            />
+          </p>
+          <p>
+            NICKNAME :
+            <input
+              name="nickname"
+              class="w3-input"
+              placeholder="Enter your nicnname"
+              v-model="user_name"
+              type="password"
+            />
+          </p>
+          <button type="submit" class="w3-button w3-green w3-round w3-margin">
+            Submit
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import { registerUser } from '@/api/auth';
+
+export default {
+  data() {
+    return {
+      // form values
+      user_id: '',
+      user_pw: '',
+      user_name: '',
+      // log
+      logMessage: '',
+    };
+  },
+  methods: {
+    async signup() {
+      const userData = {
+        user_id: this.user_id,
+        user_pw: this.user_pw,
+        user_name: this.user_name,
+      };
+      const { data } = await registerUser(userData);
+      console.log(data);
+      this.logMessage = `${data.userId} 님이 가입되었습니다`;
+      this.clearData();
+    },
+    clearData() {
+      this.username = '';
+      this.password = '';
+      this.nickname = '';
+    },
+  },
+};
+</script>
+
+<style scoped>
+#signupForm {
+  width: 500px;
+  margin: auto;
+}
+p {
+  margin-top: 25px;
+  text-align: right;
+  width: 350px;
+  margin: auto;
+  margin-top: 25px;
+}
+input {
+  display: inline-block;
+  width: 250px;
+}
+</style>

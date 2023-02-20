@@ -82,6 +82,7 @@ export default {
 .searchBar {
   margin: 10px auto;
   justify-content: flex-end;
+  width: 100%;
 }
 .searchBar .searchOptions {
   display: inline-block;

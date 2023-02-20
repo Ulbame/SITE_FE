@@ -1,18 +1,10 @@
 import { postAxios } from './index';
-import _ from 'lodash';
 
 function fetchBoard(postIndex, searchCondition) {
-  const indexUrl = Object.keys(postIndex)
-    .map(key => `${key}=${postIndex[key]}`)
-    .join('&');
-  let conditionUrl = '';
-  if (!_.isEmpty(searchCondition)) {
-    conditionUrl = searchCondition.selectedArea
-      .map(key => `${key}=${searchCondition.value[key]}`)
-      .join('&');
-  }
-  let url = '?' + indexUrl + '&' + conditionUrl;
-  return postAxios.get(url);
+  const { firstPostIndex, lastPostIndex } = postIndex;
+  const { title, contents, creatorId } = searchCondition.value;
+  const params = { firstPostIndex, lastPostIndex, title, contents, creatorId };
+  return postAxios.get(null, { params });
 }
 
 function fetchPost(postIndex) {
@@ -20,14 +12,9 @@ function fetchPost(postIndex) {
 }
 
 function fetchBoardSize(searchCondition) {
-  let conditionUrl = '';
-  if (!_.isEmpty(searchCondition)) {
-    conditionUrl = searchCondition.selectedArea
-      .map(key => `${key}=${searchCondition.value[key]}`)
-      .join('&');
-  }
-  let url = '/listSize?' + conditionUrl;
-  return postAxios.get(url);
+  const { title, contents, creatorId } = searchCondition.value;
+  const params = { title, contents, creatorId };
+  return postAxios.get('listSize', { params });
 }
 
 function createPost(post) {
