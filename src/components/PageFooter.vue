@@ -1,10 +1,17 @@
 <!-- PageFooter.vue -->
 <template>
-  <footer>여기는 footer 자리입니다.</footer>
+  <footer>E-mail : caknaat@gmail.com</footer>
 </template>
 
 <script>
 export default {};
 </script>
 
-<style scoped></style>
+<style scoped>
+footer {
+  height: 50px;
+  font-size: 12pt;
+  margin: auto;
+  margin-top: 30px;
+}
+</style>

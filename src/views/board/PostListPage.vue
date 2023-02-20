@@ -37,7 +37,7 @@ export default {
         currentPage: 1,
         pagingSize: 5,
         listSize: 10,
-        lastPagingNumber: undefined,
+        lastPagingNumber: null,
       },
       tableHeader: ['게시물 번호', '제목', '조회수', '글쓴이', '생성일시'],
       postList: {},
@@ -51,7 +51,10 @@ export default {
         write: true,
         delete: false,
       },
-      searchCondition: {},
+      searchCondition: {
+        selectedArea: [],
+        value: { title: null, contents: null, creatorId: null },
+      },
     };
   },
   watch: {
@@ -125,8 +128,9 @@ export default {
 </script>
 <style scoped>
 .post-list-page {
-  margin: 50px;
+  margin: auto;
   max-width: 960px;
   min-width: 768px;
+  width: 70%;
 }
 </style>

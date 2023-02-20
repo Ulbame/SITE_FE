@@ -1,20 +1,23 @@
 <template>
   <div class="root">
     <PageHeader />
-    <router-view />
+    <router-view class="body" />
     <PageFooter />
+    <LoadingBar></LoadingBar>
   </div>
 </template>
 
 <script>
 import PageHeader from '@/components/PageHeader';
 import PageFooter from '@/components/PageFooter';
+import LoadingBar from '@/components/LoadingBar';
 
 export default {
   name: 'App',
   components: {
     PageFooter,
     PageHeader,
+    LoadingBar,
   },
 };
 </script>
@@ -28,11 +31,17 @@ export default {
   color: #2c3e50;
 }
 .root {
-  /* left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%); */
-  height: 1080px;
-  width: 1920px;
+  height: 100%;
+  width: 80%;
+  min-width: 640px;
+  min-height: 480px;
+  max-width: 1024px;
+  max-height: 640px;
   justify-content: center;
+  margin: auto;
+}
+.body {
+  min-width: 425px;
+  min-height: 640px;
 }
 </style>
