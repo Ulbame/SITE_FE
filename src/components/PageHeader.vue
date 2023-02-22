@@ -1,17 +1,21 @@
 <!-- PageHeader.vue -->
 <template>
   <header>
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/post">Board</router-link> |
-      <router-link to="/about">About</router-link> |
-      <router-link to="/login" v-if="!this.$store.state.isLogin"
-        >Login</router-link
-      >
-      <router-link to="/signup" v-if="!this.$store.state.isLogin">
-        / Sign Up</router-link
-      >
-      <a href="#" onclick="" v-else @click="logout">Logout</a>
+    <div>
+      <br />
+      <div id="nav">
+        <router-link to="/">Home</router-link> |
+        <router-link to="/post">Board</router-link> |
+        <router-link to="/about">About</router-link> |
+        <span v-if="!this.$store.state.isLogin">
+          <router-link to="/login">Login</router-link>
+          <router-link to="/signup"> / Sign Up</router-link>
+        </span>
+        <span v-else>
+          <a>MyInfo</a> /
+          <a href="#" onclick="" @click="logout">Logout</a>
+        </span>
+      </div>
     </div>
   </header>
 </template>
@@ -22,7 +26,7 @@ export default {
     logout() {
       localStorage.removeItem('user_token');
       localStorage.removeItem('user_role');
-      this.$router.go();
+      this.$router.push('MainPage');
     },
   },
 };
@@ -30,12 +34,17 @@ export default {
 
 <style scoped>
 #nav {
-  padding: 30px;
+  margin: auto;
+  max-width: 400px;
+  padding: 15px;
+  background-color: #673ab7;
+  border-radius: 10px;
+  margin-bottom: 20px;
 }
 
 #nav a {
   font-weight: bold;
-  color: #2c3e50;
+  color: #ede7f6;
 }
 
 #nav a.router-link-active {

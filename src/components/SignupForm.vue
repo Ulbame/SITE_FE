@@ -28,9 +28,8 @@
             <input
               name="nickname"
               class="w3-input"
-              placeholder="Enter your nicnname"
+              placeholder="Enter your nickname"
               v-model="user_name"
-              type="password"
             />
           </p>
           <button type="submit" class="w3-button w3-green w3-round w3-margin">
@@ -63,10 +62,15 @@ export default {
         user_pw: this.user_pw,
         user_name: this.user_name,
       };
-      const { data } = await registerUser(userData);
-      console.log(data);
-      this.logMessage = `${data.userId} 님이 가입되었습니다`;
-      this.clearData();
+      try {
+        const { data } = await registerUser(userData);
+        this.logMessage = `${data.userId} 님이 가입되었습니다`;
+        this.clearData();
+      } catch (error) {
+        console.log('사용자 등록 실패');
+        console.log(error);
+        return;
+      }
     },
     clearData() {
       this.username = '';

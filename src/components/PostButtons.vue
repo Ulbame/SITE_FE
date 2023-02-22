@@ -1,34 +1,13 @@
 <template>
   <div class="common-buttons">
     <span @click="forcedRefresh">
-      <!-- <router-link :to="{ path: '/post/list', force: true, query: { _r: Date.now() } }"> -->
-      <!-- <router-link to="/post/write"> -->
-      <button
-        type="button"
-        class="button"
-        id="list"
-        v-if="buttonActivator.list"
-      >
-        목 록
-      </button>
+      <button type="button" class="button" id="list">목 록</button>
     </span>
     <router-link to="/post/write">
-      <button
-        type="button"
-        class="button"
-        id="add"
-        v-if="buttonActivator.write"
-      >
-        등 록
-      </button>
+      <button type="button" class="button" id="add">등 록</button>
     </router-link>
-    <router-link :to="`/post/${idx}/edit`">
-      <button
-        type="button"
-        class="button"
-        id="edit"
-        v-if="buttonActivator.edit"
-      >
+    <router-link :to="`/post/${idx}/edit`" v-if="idx">
+      <button type="button" class="button" id="edit" v-if="idx" v-once>
         수 정
       </button>
     </router-link>
@@ -37,7 +16,7 @@
       class="button"
       id="delete"
       @click="removePost"
-      v-if="buttonActivator.delete"
+      v-if="idx"
     >
       삭 제
     </button>
@@ -46,12 +25,10 @@
 
 <script>
 import { deletePost } from '@/api/post';
-import _ from 'lodash';
 
 export default {
   props: {
     idx: undefined,
-    buttonActivator: Object,
   },
   methods: {
     async removePost() {
@@ -61,8 +38,7 @@ export default {
       this.$router.push('/post/list');
     },
     forcedRefresh() {
-      if (_.isNil(this.idx)) this.$router.go('/post/list');
-      else this.$router.push('/post/list');
+      this.$router.push('/post/list');
     },
   },
 };
@@ -71,23 +47,22 @@ export default {
 <style scoped>
 .common-buttons {
   display: inline-block;
-  float: right;
+  width: auto;
+  margin: auto;
 }
 .button {
   display: inline-block;
-  font-size: 10pt;
+  font-size: 0.85rem;
   margin: 5px;
   padding: 5px;
   width: 50px;
   height: 30px;
   border-radius: 5px;
-  border: 1px solid lightgrey;
-  color: rgb(100, 100, 100);
+  background-color: #b39ddb;
 }
 .button:hover {
   font-weight: bold;
   background-color: #e7e6f4;
-  border: 1px solid #cfcee9;
   color: #524eab;
 }
 </style>

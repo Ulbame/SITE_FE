@@ -1,7 +1,4 @@
 /* common.css */
-body {
-    background: #F7F6F9;
-  }
   .app {
       position: relative;
       width: 100%;
@@ -13,7 +10,6 @@ body {
   }
   h1 {
       text-align: center;
-      font-weight: 100;
   }
   
   /*--- LINK ---*/
@@ -22,22 +18,13 @@ body {
     text-decoration: none;
   }
   a:hover {
-    color: #3fc1c9;
-  }
-  
-  /*--- LAYOUT ---*/
-  .contents {
-    max-width: 1020px;
-    margin: 0 auto;
-    padding: 0 5px;
-    width: 100%;  
+    color: #673AB7;
   }
   /*--- HEADER ---*/
   .page-header {
-    font-size: 45px;
-      font-weight: 600;
-      color: #456155;
-      padding: 30px 5px 15px;
+    font-size: 25px;
+      font-weight: 500;
+      color: #311B92;
   }
   
   /*--- FORM ---*/
@@ -46,21 +33,17 @@ body {
     align-items: center;
   }
   .form-wrapper {
-    background: white;
+    background: #EDE7F6;
     -webkit-box-shadow: 0 20px 20px rgba(0, 0, 0, 0.08);
     box-shadow: 0 20px 20px rgba(0, 0, 0, 0.08);
-    border-radius: 3px;
+    border-radius: 10px;
     padding: 15px 15px;
-  }
-  .form-wrapper.form-wrapper-sm {
-    max-width: 500px;
-    margin: 40px auto;
-  }
-  .form-wrapper-sm .page-header {
-    padding: 0px 0 20px;
+    margin-bottom: 20px;
+    width: 100%;
+    margin:auto;
   }
   .form {
-      width: 460px;
+      width: 80%;
       height: 100%;
   }
   .form .validation-text {
@@ -74,19 +57,19 @@ body {
   .form label {
     width: 20%;
     display: inline-block;
-    margin-bottom: 0.5rem;
-    text-align: right;
+    margin-bottom: 0.5rem;    
     margin-right: 1rem;
-    color: #364f6b;
+    color: #311B92;
     font-size: 120%;
+    text-align: right;
   }
   .form input,
   .form textarea {
     font-family: inherit;
     font-size: 100%;
     display: inline-block;
-    width: 300px;
-    border: 1px solid #dae1e7;
+    width: 350px;
+    border: 1px solid #EDE7F6;
     box-shadow: 0 2px 4px 0 rgba(0,0,0,.1);
     padding: 0.5rem 0.75rem;
     margin-bottom: 1rem;
@@ -100,14 +83,7 @@ body {
   .form div:nth-last-child(2) {
     margin-bottom: 0.5rem;
   }
-  .btn {
-    background: #FE9616;
-    padding: 0.5rem 1.5rem;
-    font-weight: 700;
-    border-radius: .25rem;
-    border: 0 solid #dae1e7;
-  }
-  .btn.disabled {
+  .disabled {
     opacity: 0.5;
     cursor: not-allowed;
   }

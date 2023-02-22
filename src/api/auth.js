@@ -7,19 +7,19 @@ function getUserInfo(userId, userPw) {
     user_pw: userPw,
   };
 
-  let serverUrl = '//localhost:9091';
+  let serverUrl = 'https://localhost:9091';
 
-  return axios.post(serverUrl + '/user', reqData, {
+  return axios.post(serverUrl + '/user/login', reqData, {
     headers: {
       'Content-type': 'application/json',
     },
   });
 }
 
-function login(userId, userPw) {
+async function login(userId, userPw) {
   try {
     const getUserInfoPromise = getUserInfo(userId, userPw);
-    const userInfoResponse = Promise.all([getUserInfoPromise]);
+    const [userInfoResponse] = await Promise.all([getUserInfoPromise]);
     if (userInfoResponse.data.length === 0) {
       return 'notFound';
     } else {
@@ -34,7 +34,7 @@ function login(userId, userPw) {
 
 const registerUser = userData => {
   console.log('유저등록');
-  return axios.post('http://localhost:9091/user/signup', userData);
+  return axios.post('https://localhost:9091/user/signup', userData);
 };
 
 export { registerUser, login };

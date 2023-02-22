@@ -5,7 +5,6 @@ import MainPage from '@/views/MainPage.vue';
 import BoardPage from '@/views/board/BoardPage.vue';
 import PostListPage from '@/views/board/PostListPage.vue';
 import PostDetailPage from '@/views/board/PostDetailPage.vue';
-import PostWritePage from '@/views/board/PostWritePage.vue';
 import LoginPage from '@/views/common/LoginPage.vue';
 import SignupPage from '@/views/common/SignupPage.vue';
 
@@ -52,12 +51,12 @@ const router = createRouter({
         },
         {
           path: ':idx/edit',
-          component: PostWritePage,
+          component: PostDetailPage,
           beforeEnter: requireAuth(),
         },
         {
           path: 'write',
-          component: PostWritePage,
+          component: PostDetailPage,
           beforeEnter: requireAuth(),
         },
       ],

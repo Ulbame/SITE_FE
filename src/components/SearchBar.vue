@@ -18,34 +18,24 @@
           :label="params"
           :rules="rules"
           hide-details="auto"
+          @keyup="sendSearchCondition"
         ></v-text-field>
       </div>
-      <!-- <v-text-field
-        @keydown="sendSearchCondition"
-        v-model="searchCondition.value"
-        label="검색할 내용"
-        :rules="rules"
-        hide-details="auto"
-      ></v-text-field> -->
     </span>
-    <svg-icon
-      type="mdi"
-      :path="path"
-      @click="sendSearchCondition"
-      disabled
-    ></svg-icon>
+    <a href="#">
+      <i
+        class="fa-solid fa-magnifying-glass fa-2xl"
+        @click="sendSearchCondition"
+      ></i>
+    </a>
   </div>
 </template>
 
 <script>
-import SvgIcon from '@jamescoyle/vue-icon';
 import { mdiMagnify } from '@mdi/js';
 import _ from 'lodash';
 
 export default {
-  components: {
-    SvgIcon,
-  },
   data() {
     return {
       path: mdiMagnify,
@@ -80,17 +70,27 @@ export default {
 
 <style scoped>
 .searchBar {
-  margin: 10px auto;
-  justify-content: flex-end;
-  width: 100%;
+  display: table-cell;
+  display: table;
+  margin: auto;
+  padding: 10px;
+  border-radius: 10px;
+  width: 600px;
+  background-color: #ede7f6;
 }
 .searchBar .searchOptions {
-  display: inline-block;
-  width: 300px;
-  padding: 0px 10px;
+  display: table-cell;
+  width: 270px;
+  vertical-align: baseline;
 }
 .searchBar .searchParams {
   display: inline-block;
-  min-width: 220px;
+  vertical-align: baseline;
+  width: 200px;
+}
+a,
+i {
+  display: table-cell;
+  vertical-align: middle;
 }
 </style>
