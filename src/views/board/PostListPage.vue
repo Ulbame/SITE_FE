@@ -1,21 +1,23 @@
 <template>
   <div class="post-list-page">
     <div>
-      <PostList :table-header="tableHeader" :post-list="postList" />
-      <PostButtons :button-activator="buttonActivator" />
-      <PostListPaging
-        :paging="paging"
-        :page-numbers="pageNumbers"
-        @change-current-page="changeCurrentPage"
-      />
+      <PostBoard :table-header="tableHeader" :post-list="postList" />
+      <div id="board-nav">
+        <PagingBar
+          :paging="paging"
+          :page-numbers="pageNumbers"
+          @change-current-page="changeCurrentPage"
+        />
+        <PostButtons />
+      </div>
       <SearchBar @send-search-condition="initSearchCondition" />
     </div>
   </div>
 </template>
 
 <script>
-import PostList from '@/components/PostList.vue';
-import PostListPaging from '@/components/PostListPaging.vue';
+import PostBoard from '@/components/PostBoard.vue';
+import PagingBar from '@/components/PagingBar.vue';
 import PostButtons from '@/components/PostButtons.vue';
 import SearchBar from '@/components/SearchBar.vue';
 
@@ -25,8 +27,8 @@ import _ from 'lodash';
 
 export default {
   components: {
-    PostList,
-    PostListPaging,
+    PostBoard,
+    PagingBar,
     PostButtons,
     SearchBar,
   },
@@ -36,7 +38,7 @@ export default {
       paging: {
         currentPage: 1,
         pagingSize: 5,
-        listSize: 10,
+        listSize: 5,
         lastPagingNumber: null,
       },
       tableHeader: ['게시물 번호', '제목', '조회수', '글쓴이', '생성일시'],
@@ -44,12 +46,6 @@ export default {
       postIndex: {
         firstPostIndex: Number,
         lastPostIndex: Number,
-      },
-      buttonActivator: {
-        list: true,
-        edit: false,
-        write: true,
-        delete: false,
       },
       searchCondition: {
         selectedArea: [],
@@ -68,6 +64,9 @@ export default {
   mounted() {
     console.log('페이지 초기화');
     this.initPage();
+  },
+  updated() {
+    console.log(this.postList);
   },
   methods: {
     //페이지 전체 초기화
@@ -119,18 +118,15 @@ export default {
       this.searchCondition = searchCondition;
       this.initPage();
     },
-    //게시물 목록 머리말 초기화
-    // initHeader() {
-    //   this.tableHeader = Object.keys(this.postList[0]);
-    // },
   },
 };
 </script>
 <style scoped>
-.post-list-page {
+#board-nav {
+  display: inline-block;
+  width: 100%;
+  height: 50px;
   margin: auto;
-  max-width: 960px;
-  min-width: 768px;
-  width: 70%;
+  margin-bottom: 10px;
 }
 </style>

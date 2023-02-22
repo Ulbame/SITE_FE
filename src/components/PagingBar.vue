@@ -1,39 +1,27 @@
 <template>
-  <!-- <div class="text-center" id="pagination">
-    <v-pagination
-      v-model="currentPage"
-      :length="paging.lastPagingNumber"
-      :total-visible="5"
-      class="rounded-pill"
-      rounded="circle"
-      density="compact"
-      size="small"
-      active-color="red"
-    ></v-pagination>
-  </div> -->
   <div class="pagination">
-    <span>
-      <a href="#" onclick="return false;" @click="changePage(1)">
+    <div>
+      <a href="#" onclick="" @click="changePage(1)">
         {{ '<<' }}
       </a>
       <a
         href="#"
-        onclick="return false;"
+        onclick=""
         @click="changePage(paging.currentPage - 1)"
         disabled="true"
       >
         {{ '<' }}
       </a>
-      <span v-for="(number, index) in pageNumbers" :key="index">
+      <div v-for="(number, index) in pageNumbers" :key="index">
         <template v-if="paging.currentPage === number">
-          <a href="#" onclick="return false;" class="active">{{ number }}</a>
+          <a href="#" onclick="" class="active">{{ number }}</a>
         </template>
         <template v-else>
-          <a href="#" onclick="return false;" @click="changePage(number)">
+          <a href="#" onclick="" @click="changePage(number)">
             {{ number }}
           </a>
         </template>
-      </span>
+      </div>
       <a
         href="#"
         onclick="return false;"
@@ -41,14 +29,10 @@
       >
         {{ '>' }}
       </a>
-      <a
-        href="#"
-        onclick="return false;"
-        @click="changePage(paging.lastPagingNumber)"
-      >
+      <a href="#" onclick="" @click="changePage(paging.lastPagingNumber)">
         {{ '>>' }}
       </a>
-    </span>
+    </div>
   </div>
 </template>
 
@@ -87,28 +71,33 @@ export default {
 <style scoped>
 .pagination {
   display: inline-block;
-  /* float: right; */
-  min-width: 500px;
-  margin: 10px -140px 0px 0px;
+  vertical-align: middle;
+  height: 50px;
+  width: auto;
+  margin: auto;
+  background-color: #b39ddb;
+  border-radius: 20px;
+  margin-right: 20px;
 }
-
+.pagination div {
+  display: table-cell;
+  padding: 4px;
+}
 .pagination a {
-  display: inline-block;
-  border-radius: 5px;
+  display: table-cell;
+  justify-content: center;
+  vertical-align: middle;
   width: 30px;
   height: 30px;
-  align-items: center;
-}
-
-.pagination a {
-  border-radius: 5px;
+  border-radius: 10px;
+  transition: background-color 0.5s;
+  font-weight: bold;
+  color: #673ab7;
 }
 
 .pagination a.active {
-  background-color: #4caf50;
-  /* border-radius: 5px; */
+  background-color: #b39ddb;
   color: white;
-  transition: background-color 0.3s;
 }
 
 .pagination a:hover:not(.active) {

@@ -29,19 +29,26 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  background-color: #d1c4e9;
 }
 .root {
-  height: 100%;
-  width: 80%;
-  min-width: 640px;
-  min-height: 480px;
-  max-width: 1024px;
-  max-height: 640px;
+  /* display: flex;
+  flex-direction: column;
+  align-items: center; */
+  height: 100vh;
+  width: 100vw;
   justify-content: center;
+  align-items: center;
   margin: auto;
 }
 .body {
-  min-width: 425px;
-  min-height: 640px;
+  min-width: 640px;
+  max-width: 800px;
+  height: 70%;
+  border-radius: 10px;
+  margin: auto;
+  background-color: #ede7f6;
+  text-align: middle;
+  padding: 10px;
 }
 </style>

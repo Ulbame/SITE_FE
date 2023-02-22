@@ -1,6 +1,12 @@
 <!-- PageFooter.vue -->
 <template>
-  <footer>E-mail : caknaat@gmail.com</footer>
+  <div>
+    <footer>
+      <a href="https://github.com/ulbame">github.com/ulbame</a> |
+      <a href="https://velog.io/@ulbame">velog.io/@ulbame</a> |
+      caknaat@gmail.com
+    </footer>
+  </div>
 </template>
 
 <script>
@@ -9,9 +15,11 @@ export default {};
 
 <style scoped>
 footer {
-  height: 50px;
+  height: 100px;
   font-size: 12pt;
   margin: auto;
   margin-top: 30px;
+  color: #311b92;
+  font-weight: bolder;
 }
 </style>
