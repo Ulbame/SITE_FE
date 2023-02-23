@@ -10,7 +10,7 @@ function createInstance() {
   });
 }
 
-function createInstanceWithAuth(url) {
+function createInstanceWithInterceptor(url) {
   const instance = axios.create({
     baseURL: `${process.env.VUE_APP_API_URL}${url}`,
     timeout: 1000,
@@ -19,4 +19,5 @@ function createInstanceWithAuth(url) {
 }
 
 export const instance = createInstance();
-export const postAxios = createInstanceWithAuth('post/');
+export const postAxios = createInstanceWithInterceptor('post/');
+export const userAxios = createInstanceWithInterceptor('user/');

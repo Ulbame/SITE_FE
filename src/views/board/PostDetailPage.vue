@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="post-detail-wrapper">
     <div class="contents">
       <h1 class="page-header">{{ pageHeader }}</h1>
       <div class="form-wrapper">
@@ -10,10 +10,10 @@
               type="text"
               id="title"
               v-model="post.title"
-              :disabled="isReading"
+              :disabled="!isWriting || isEditing"
             />
           </div>
-          <div v-if="isReading">
+          <div v-if="!isWriting">
             <label for="creator_id">작성자</label>
             <input
               type="text"
@@ -45,14 +45,14 @@
               disabled
             />
           </div>
-          <div class="instant">
+          <div>
             <label for="contents" id="label_contents">내용</label>
             <textarea
               type="text"
               id="contents"
               rows="5"
               v-model="post.contents"
-              :disabled="isReading"
+              :disabled="!isWriting || isEditing"
             />
             <p v-if="!isContentsValid" class="validation-text warning">
               Contents length must be less than 250
@@ -84,11 +84,11 @@ export default {
     };
   },
   computed: {
-    isReading() {
-      return !(
-        this.$route.fullPath.includes('write') ||
-        this.$route.fullPath.includes('edit')
-      );
+    isWriting() {
+      return this.$route.fullPath.includes('write');
+    },
+    isEditing() {
+      return this.$route.fullPath.includes('edit');
     },
     isContentsValid() {
       return this.post.contents.length < 250;
@@ -134,7 +134,4 @@ export default {
   },
 };
 </script>
-<style scoped>
-#label_contents {
-}
-</style>
+<style scoped></style>

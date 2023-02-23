@@ -25,7 +25,7 @@
             <button
               type="button"
               class="w3-button w3-green w3-round w3-margin"
-              @click="callLogin"
+              @click="login"
             >
               Login
             </button>
@@ -43,7 +43,9 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex';
+import { mapGetters } from 'vuex';
+
+import { userLogin } from '@/api/user';
 
 export default {
   data() {
@@ -53,29 +55,21 @@ export default {
     };
   },
   methods: {
-    ...mapActions(['login']),
-
-    async callLogin() {
-      if (this.user_id === '') {
-        alert('ID를 입력하세요.');
-        return;
-      }
-
-      if (this.user_pw === '') {
-        alert('비밀번호를 입력하세요.');
-        return;
-      }
-
+    async login() {
       try {
-        let loginResult = await this.login({
-          user_id: this.user_id,
-          user_pw: this.user_pw,
-        });
-        if (loginResult) {
+        if (!this.isInputEmpty()) {
+          console.log('empty input');
+          return;
+        }
+        const userData = await userLogin(this.user_id, this.user_pw);
+        if (userData === 'login failed') {
+          console.log('login failure');
+        } else {
           console.log('login success');
-          this.$router.push('/home');
+          this.$router.push('/');
           this.$store.commit('IS_MODAL_VIEWED', false);
           this.$store.commit('MODAL_COMPONENT', 'default');
+          return;
         }
       } catch (err) {
         console.log(err);
@@ -86,6 +80,15 @@ export default {
         }
       }
     },
+    isInputEmpty() {
+      if (!this.user_id) {
+        return alert('ID를 입력하세요.');
+      }
+      if (!this.user_pw) {
+        return alert('비밀번호를 입력하세요.');
+      }
+      return true;
+    },
   },
   computed: {
     ...mapGetters({
@@ -95,9 +98,4 @@ export default {
 };
 </script>
 
-<style>
-#loginForm {
-  width: 500px;
-  margin: auto;
-}
-</style>
+<style></style>

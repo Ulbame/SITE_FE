@@ -48,7 +48,7 @@
 </template>
 
 <script>
-import { registerUser } from '@/api/auth';
+import { registerUser } from '@/api/user';
 
 export default {
   data() {
@@ -88,10 +88,6 @@ export default {
 </script>
 
 <style scoped>
-#signupForm {
-  width: 500px;
-  margin: auto;
-}
 p {
   margin-top: 25px;
   text-align: right;

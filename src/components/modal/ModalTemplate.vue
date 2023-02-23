@@ -38,15 +38,15 @@ export default {
 }
 .modal-card {
   position: absolute;
-  top: 40%;
+  top: 30%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 600px;
+  width: 500px;
   margin: auto;
   margin-top: 30px;
-  padding: 20px;
+  padding: 40px;
   background-color: white;
-  min-height: 500px;
+  /* min-height: 500px; */
   z-index: 10;
   opacity: 1;
   border-radius: 20px;

@@ -42,7 +42,7 @@
 </template>
 
 <script>
-import { registerUser } from '@/api/auth';
+import { registerUser } from '@/api/user';
 
 export default {
   data() {
