@@ -1,9 +1,9 @@
 <template>
   <div>
     <div>
-      <h2>Please Log In</h2>
+      <h1>Please Log In</h1>
       <div id="loginForm">
-        <form @submit.prevent="fnLogin">
+        <form>
           <p>
             <input
               class="w3-input"
@@ -22,11 +22,21 @@
             />
           </p>
           <p>
-            <button type="submit" class="w3-button w3-green w3-round w3-margin">
+            <button
+              type="button"
+              class="w3-button w3-green w3-round w3-margin"
+              @click="callLogin"
+            >
               Login
             </button>
           </p>
         </form>
+        <a
+          href="#;"
+          onclick="return false;"
+          @click="$store.commit('MODAL_COMPONENT', 'SignupModal')"
+          >회원가입 창으로 전환</a
+        >
       </div>
     </div>
   </div>
@@ -45,7 +55,7 @@ export default {
   methods: {
     ...mapActions(['login']),
 
-    async fnLogin() {
+    async callLogin() {
       if (this.user_id === '') {
         alert('ID를 입력하세요.');
         return;
@@ -61,19 +71,20 @@ export default {
           user_id: this.user_id,
           user_pw: this.user_pw,
         });
-        if (loginResult) this.goToPages();
+        if (loginResult) {
+          console.log('login success');
+          this.$router.push('/home');
+          this.$store.commit('IS_MODAL_VIEWED', false);
+          this.$store.commit('MODAL_COMPONENT', 'default');
+        }
       } catch (err) {
+        console.log(err);
         if (err.message.indexOf('Network Error') > -1) {
           alert('서버에 접속할 수 없습니다. 상태를 확인해주세요.');
         } else {
           alert('로그인 정보를 확인할 수 없습니다.');
         }
       }
-    },
-    goToPages() {
-      this.$router.push({
-        name: 'List',
-      });
     },
   },
   computed: {

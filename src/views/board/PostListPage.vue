@@ -16,10 +16,10 @@
 </template>
 
 <script>
-import PostBoard from '@/components/PostBoard.vue';
-import PagingBar from '@/components/PagingBar.vue';
-import PostButtons from '@/components/PostButtons.vue';
-import SearchBar from '@/components/SearchBar.vue';
+import PostBoard from '@/components/posts/PostBoard.vue';
+import PagingBar from '@/components/posts/PagingBar.vue';
+import PostButtons from '@/components/posts/PostButtons.vue';
+import SearchBar from '@/components/posts/SearchBar.vue';
 
 import { fetchBoard, fetchBoardSize } from '@/api/post';
 

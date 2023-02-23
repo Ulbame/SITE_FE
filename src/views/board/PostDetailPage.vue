@@ -70,7 +70,7 @@
 
 <script>
 import { fetchPost } from '@/api/post';
-import PostButtons from '@/components/PostButtons.vue';
+import PostButtons from '@/components/posts/PostButtons.vue';
 import _ from 'lodash';
 
 export default {

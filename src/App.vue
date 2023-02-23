@@ -1,23 +1,40 @@
 <template>
   <div class="root">
+    <LoadingBar></LoadingBar>
+    <ModalTemplate v-if="isModalViewed">
+      <ModalContents />
+    </ModalTemplate>
     <PageHeader />
     <router-view class="body" />
     <PageFooter />
-    <LoadingBar></LoadingBar>
   </div>
 </template>
 
 <script>
 import PageHeader from '@/components/PageHeader';
 import PageFooter from '@/components/PageFooter';
-import LoadingBar from '@/components/LoadingBar';
+import LoadingBar from '@/components/common/LoadingBar';
+import ModalTemplate from '@/components/modal/ModalTemplate';
+import ModalContents from '@/components/modal/ModalContents';
 
 export default {
   name: 'App',
+  computed: {
+    isModalViewed() {
+      return this.$store.state.isModalViewed;
+    },
+  },
+  methods: {
+    openModal() {
+      this.$store.commit('IS_MODAL_VIEWED', true);
+    },
+  },
   components: {
     PageFooter,
     PageHeader,
     LoadingBar,
+    ModalTemplate,
+    ModalContents,
   },
 };
 </script>
@@ -32,9 +49,6 @@ export default {
   background-color: #d1c4e9;
 }
 .root {
-  /* display: flex;
-  flex-direction: column;
-  align-items: center; */
   height: 100vh;
   width: 100vw;
   justify-content: center;

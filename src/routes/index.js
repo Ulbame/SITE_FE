@@ -5,16 +5,17 @@ import MainPage from '@/views/MainPage.vue';
 import BoardPage from '@/views/board/BoardPage.vue';
 import PostListPage from '@/views/board/PostListPage.vue';
 import PostDetailPage from '@/views/board/PostDetailPage.vue';
-import LoginPage from '@/views/common/LoginPage.vue';
-import SignupPage from '@/views/common/SignupPage.vue';
 
 const requireAuth = () => (from, to, next) => {
   const token = localStorage.getItem('user_token');
   if (token) {
-    store.state.isLogin = true;
+    store.commit('IS_LOGIN', true);
     return next();
   } // isLogin === true면 페이지 이동
-  next('/login'); // isLogin === false면 다시 로그인 화면으로 이동
+  else {
+    store.commit('MODAL_COMPONENT', 'NeedLoginModal');
+    store.commit('IS_MODAL_VIEWED', true);
+  }
 };
 
 const router = createRouter({
@@ -60,14 +61,6 @@ const router = createRouter({
           beforeEnter: requireAuth(),
         },
       ],
-    },
-    {
-      path: '/login',
-      component: LoginPage,
-    },
-    {
-      path: '/signup',
-      component: SignupPage,
     },
     {
       path: '/:pathMatch(.*)',
