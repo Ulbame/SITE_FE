@@ -65,9 +65,6 @@ export default {
     console.log('페이지 초기화');
     this.initPage();
   },
-  updated() {
-    console.log(this.postList);
-  },
   methods: {
     //페이지 전체 초기화
     initPage() {

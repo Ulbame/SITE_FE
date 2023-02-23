@@ -5,7 +5,7 @@ import actions from './actions';
 
 export default createStore({
   state: {
-    user: null,
+    userId: null,
     isLogin: false,
     lodingStatus: false,
     isModalViewed: false,

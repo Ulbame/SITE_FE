@@ -1,5 +1,5 @@
 <template>
-  <div class="board-page">
+  <div>
     <router-view></router-view>
   </div>
 </template>
@@ -8,9 +8,4 @@
 export default {};
 </script>
 
-<style>
-.board-page {
-  position: relative;
-  margin: auto;
-}
-</style>
+<style></style>

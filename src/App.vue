@@ -19,22 +19,23 @@ import ModalContents from '@/components/modal/ModalContents';
 
 export default {
   name: 'App',
-  computed: {
-    isModalViewed() {
-      return this.$store.state.isModalViewed;
-    },
-  },
-  methods: {
-    openModal() {
-      this.$store.commit('IS_MODAL_VIEWED', true);
-    },
-  },
   components: {
     PageFooter,
     PageHeader,
     LoadingBar,
     ModalTemplate,
     ModalContents,
+  },
+  created() {
+    console.log(process.env);
+  },
+  mounted() {
+    //localStorage 확인 로직 필요?
+  },
+  computed: {
+    isModalViewed() {
+      return this.$store.state.isModalViewed;
+    },
   },
 };
 </script>
