@@ -9,6 +9,7 @@ export function setInterceptors(instance) {
       return config;
     },
     function (error) {
+      store.commit('LOADING_STATUS', false);
       return Promise.reject(error);
     },
   );
@@ -19,6 +20,7 @@ export function setInterceptors(instance) {
       return response;
     },
     function (error) {
+      store.commit('LOADING_STATUS', false);
       return Promise.reject(error);
     },
   );

@@ -1,19 +1,25 @@
 <template>
   <div id="home">
     <div id="home-text">
-      <div @click="show[0] = !show[0]">소개</div>
+      <h3 @click="show[0] = !show[0]">Vue.js 연습용 웹사이트</h3>
       <Transition name="slide-fade">
         <div v-show="!show[0]"></div>
       </Transition>
       <Transition name="slide-fade">
-        <p v-show="show[0]">
-          이 곳은 Vue.js의 연습을 위해 만들어졌습니다.<br />
-          상세 내용은 하단 링크를 참고해 주시면 되겠습니다.
-        </p>
+        <div v-show="show[0]">
+          <p>
+            이 곳은 Vue.js의 연습을 위해 만들어졌습니다.
+            <br />
+            상세 내용은 하단 링크를 참고해 주시면 되겠습니다.
+          </p>
+        </div>
       </Transition>
-      <div @click="show[1] = !show[1]">일시별 개발내용</div>
+      <h3 @click="show[1] = !show[1]">일시별 개발내용</h3>
       <Transition name="slide-fade">
-        <p v-show="show[1]">23/02/21 백엔드 서버와의 통신에서의 예외처리</p>
+        <div v-show="show[1]">
+          <p>23/02/21 백엔드 서버와의 통신에서의 예외처리</p>
+          <p>23/02/23 Login 등의 화면 모달로 처리</p>
+        </div>
       </Transition>
     </div>
   </div>
@@ -63,7 +69,7 @@ p {
 
 .slide-fade-enter-from,
 .slide-fade-leave-to {
-  transform: translateY(100%);
+  transform: translateY(30%);
   opacity: 0;
 }
 </style>

@@ -7,13 +7,20 @@
         <router-link to="/">Home</router-link> |
         <router-link to="/post">Board</router-link> |
         <router-link to="/about">About</router-link> |
-        <span v-if="!this.$store.state.isLogin">
-          <router-link to="/login">Login</router-link>
-          <router-link to="/signup"> / Sign Up</router-link>
+        <span v-if="!isLogin">
+          <a href="#" onclick="return false;" @click="showModal('LoginModal')"
+            >Login</a
+          >
+          /
+          <a href="#" onclick="return false;" @click="showModal('SignupModal')"
+            >SignUp</a
+          >
         </span>
         <span v-else>
           <a>MyInfo</a> /
-          <a href="#" onclick="" @click="logout">Logout</a>
+          <a href="#" onclick="return false;" @click="showModal('LogoutModal')"
+            >Log Out</a
+          >
         </span>
       </div>
     </div>
@@ -22,11 +29,16 @@
 
 <script>
 export default {
+  computed: {
+    isLogin() {
+      return this.$store.state.isLogin;
+    },
+  },
   methods: {
-    logout() {
-      localStorage.removeItem('user_token');
-      localStorage.removeItem('user_role');
-      this.$router.push('MainPage');
+    showModal(modalComponent) {
+      console.log(`${modalComponent} will be showed`);
+      this.$store.commit('MODAL_COMPONENT', modalComponent);
+      this.$store.commit('IS_MODAL_VIEWED', true);
     },
   },
 };
@@ -47,7 +59,11 @@ export default {
   color: #ede7f6;
 }
 
+#nav a:hover {
+  color: #bbdefb;
+}
+
 #nav a.router-link-active {
-  color: #42b983;
+  color: #64b5f6;
 }
 </style>

@@ -1,6 +1,5 @@
 <template>
   <div class="board-page">
-    <!-- <router-view :key="$route.url"></router-view> -->
     <router-view></router-view>
   </div>
 </template>

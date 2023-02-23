@@ -32,13 +32,11 @@
 </template>
 
 <script>
-import { mdiMagnify } from '@mdi/js';
 import _ from 'lodash';
 
 export default {
   data() {
     return {
-      path: mdiMagnify,
       searchedArea: ['title', 'contents', 'creatorId'],
       searchCondition: {
         selectedArea: ['title'],

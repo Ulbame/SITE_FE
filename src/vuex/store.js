@@ -8,6 +8,8 @@ export default createStore({
     user: null,
     isLogin: false,
     lodingStatus: false,
+    isModalViewed: false,
+    modalComponent: 'DefaultModal',
   },
   mutations,
   getters,

@@ -2,18 +2,12 @@
 import axios from 'axios';
 
 function getUserInfo(userId, userPw) {
-  const reqData = {
+  const loginData = {
     user_id: userId,
     user_pw: userPw,
   };
 
-  let serverUrl = 'https://localhost:9091';
-
-  return axios.post(serverUrl + '/user/login', reqData, {
-    headers: {
-      'Content-type': 'application/json',
-    },
-  });
+  return axios.post('http://localhost:9091/user/login', loginData);
 }
 
 async function login(userId, userPw) {
@@ -33,8 +27,7 @@ async function login(userId, userPw) {
 }
 
 const registerUser = userData => {
-  console.log('유저등록');
-  return axios.post('https://localhost:9091/user/signup', userData);
+  return axios.post('http://localhost:9091/user/signup', userData);
 };
 
 export { registerUser, login };
