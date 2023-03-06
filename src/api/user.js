@@ -33,6 +33,7 @@ async function userLogin(userId, userPw) {
   } catch (err) {
     console.log('error catched');
     console.error(err);
+    return 'login failed';
   }
 }
 export { registerUser, userLogin };

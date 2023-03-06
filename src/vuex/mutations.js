@@ -19,4 +19,7 @@ export default {
   [types.MODAL_COMPONENT](state, modalComponent) {
     state.modalComponent = modalComponent;
   },
+  [types.IS_MOBILE](state, isMobile) {
+    state.isMobile = isMobile;
+  },
 };

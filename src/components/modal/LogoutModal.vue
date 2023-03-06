@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Logout Modal</h1>
+    <h1>Logout</h1>
     <p>로그아웃 하시겠습니까?</p>
     <button class="button" @click="logout">확인</button>
     <button class="button" @click="closeModal">취소</button>

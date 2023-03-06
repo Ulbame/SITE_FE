@@ -1,5 +1,6 @@
 <template>
-  <div class="root">
+  <div>
+    <br />
     <LoadingBar></LoadingBar>
     <ModalTemplate v-if="isModalViewed">
       <ModalContents />
@@ -26,8 +27,20 @@ export default {
     ModalTemplate,
     ModalContents,
   },
+  data() {
+    return {
+      userAgent: navigator.userAgent.toLowerCase(),
+    };
+  },
   created() {
     console.log(process.env);
+    if (
+      this.userAgent.includes('mobile') ||
+      this.userAgent.includes('android') ||
+      this.userAgent.includes('ios')
+    ) {
+      this.$store.commit('IS_MOBILE', true);
+    }
   },
   mounted() {
     //localStorage 확인 로직 필요?
@@ -48,18 +61,13 @@ export default {
   text-align: center;
   color: #2c3e50;
   background-color: #d1c4e9;
-}
-.root {
   height: 100vh;
   width: 100vw;
-  justify-content: center;
-  align-items: center;
-  margin: auto;
+  min-width: 400px;
 }
 .body {
-  min-width: 640px;
-  max-width: 800px;
-  height: 70%;
+  max-width: 640px;
+  width: 90%;
   border-radius: 10px;
   margin: auto;
   background-color: #ede7f6;

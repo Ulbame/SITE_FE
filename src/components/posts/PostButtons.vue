@@ -47,7 +47,7 @@ export default {
 <style scoped>
 .common-buttons {
   display: inline-block;
-  width: auto;
+  width: 100%;
   margin: auto;
 }
 .button {

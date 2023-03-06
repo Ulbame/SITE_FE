@@ -41,7 +41,8 @@ export default {
   top: 30%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 500px;
+  width: 90%;
+  max-width: 500px;
   margin: auto;
   margin-top: 30px;
   padding: 40px;

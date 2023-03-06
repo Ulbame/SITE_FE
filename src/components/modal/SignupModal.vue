@@ -1,7 +1,7 @@
 <template>
   <div>
     <div>
-      <h1>Please Sign Up</h1>
+      <h1>Sign Up</h1>
       <div id="signupForm">
         <form @submit.prevent="signup">
           <p>
@@ -14,7 +14,7 @@
             />
           </p>
           <p>
-            PASSWORD :
+            PW :
             <input
               name="password"
               class="w3-input"
@@ -24,7 +24,7 @@
             />
           </p>
           <p>
-            NICKNAME :
+            NICK :
             <input
               name="nickname"
               class="w3-input"
@@ -89,14 +89,12 @@ export default {
 
 <style scoped>
 p {
-  margin-top: 25px;
   text-align: right;
-  width: 350px;
-  margin: auto;
-  margin-top: 25px;
+  width: 90%;
+  margin-bottom: 5px;
 }
 input {
   display: inline-block;
-  width: 250px;
+  width: 70%;
 }
 </style>

@@ -42,7 +42,7 @@ export default {
   border-radius: 10px;
   padding: 10px;
   height: 100%;
-  width: 500px;
+  width: 100%;
   vertical-align: middle;
 }
 #home-text {

@@ -9,6 +9,7 @@ export default createStore({
     isLogin: false,
     lodingStatus: false,
     isModalViewed: false,
+    isMobile: false,
     modalComponent: 'DefaultModal',
   },
   mutations,

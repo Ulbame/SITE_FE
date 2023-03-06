@@ -3,7 +3,7 @@ import store from '@/vuex/store';
 
 import MainPage from '@/views/MainPage.vue';
 import BoardPage from '@/views/board/BoardPage.vue';
-import PostListPage from '@/views/board/PostListPage.vue';
+import PostBoardPage from '@/views/board/PostBoardPage.vue';
 import PostDetailPage from '@/views/board/PostDetailPage.vue';
 
 const requireAuth = () => (from, to, next) => {
@@ -42,7 +42,7 @@ const router = createRouter({
         {
           path: 'list',
           name: 'List',
-          component: PostListPage,
+          component: PostBoardPage,
           beforeEnter: requireAuth(),
         },
         {

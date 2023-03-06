@@ -1,17 +1,15 @@
 <template>
-  <div class="post-list-page">
-    <div>
-      <PostBoard :table-header="tableHeader" :post-list="postList" />
-      <div id="board-nav">
-        <PagingBar
-          :paging="paging"
-          :page-numbers="pageNumbers"
-          @change-current-page="changeCurrentPage"
-        />
-        <PostButtons />
-      </div>
-      <SearchBar @send-search-condition="initSearchCondition" />
+  <div>
+    <PostBoard :post-list="postList" />
+    <div id="board-nav">
+      <PagingBar
+        :paging="paging"
+        :page-numbers="pageNumbers"
+        @change-current-page="changeCurrentPage"
+      />
+      <PostButtons id="listbuttons" />
     </div>
+    <SearchBar @send-search-condition="initSearchCondition" />
   </div>
 </template>
 
@@ -41,7 +39,6 @@ export default {
         listSize: 5,
         lastPagingNumber: null,
       },
-      tableHeader: ['게시물 번호', '제목', '조회수', '글쓴이', '생성일시'],
       postList: {},
       postIndex: {
         firstPostIndex: Number,
@@ -81,6 +78,7 @@ export default {
         filteredPostList = rawPostList.map(post =>
           _.pickBy(post, value => !_.isNil(value)),
         );
+      console.log(filteredPostList);
       this.postList = filteredPostList;
     },
     //게시물 페이지 넘버 초기화
@@ -118,12 +116,4 @@ export default {
   },
 };
 </script>
-<style scoped>
-#board-nav {
-  display: inline-block;
-  width: 100%;
-  height: 50px;
-  margin: auto;
-  margin-bottom: 10px;
-}
-</style>
+<style scoped></style>

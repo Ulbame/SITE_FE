@@ -1,7 +1,7 @@
 <template>
   <div>
     <div>
-      <h1>Please Log In</h1>
+      <h1>Log In</h1>
       <div id="loginForm">
         <form>
           <p>
@@ -62,6 +62,7 @@ export default {
           return;
         }
         const userData = await userLogin(this.user_id, this.user_pw);
+        console.log(userData);
         if (userData === 'login failed') {
           console.log('login failure');
         } else {

@@ -12,7 +12,7 @@
       >
         {{ '<' }}
       </a>
-      <div v-for="(number, index) in pageNumbers" :key="index">
+      <span v-for="(number, index) in pageNumbers" :key="index">
         <template v-if="paging.currentPage === number">
           <a href="#" onclick="" class="active">{{ number }}</a>
         </template>
@@ -21,7 +21,7 @@
             {{ number }}
           </a>
         </template>
-      </div>
+      </span>
       <a
         href="#"
         onclick="return false;"
@@ -71,25 +71,20 @@ export default {
 <style scoped>
 .pagination {
   display: inline-block;
-  vertical-align: middle;
-  height: 50px;
-  width: auto;
+  height: auto;
   margin: auto;
   background-color: #b39ddb;
   border-radius: 20px;
-  margin-right: 20px;
+  padding: 5px 5px 5px 5px;
 }
-.pagination div {
-  display: table-cell;
-  padding: 4px;
+.pagination span {
+  display: inline-block;
 }
 .pagination a {
-  display: table-cell;
-  justify-content: center;
-  vertical-align: middle;
+  display: inline-block;
+  height: auto;
   width: 30px;
-  height: 30px;
-  border-radius: 10px;
+  border-radius: 50px;
   transition: background-color 0.5s;
   font-weight: bold;
   color: #673ab7;

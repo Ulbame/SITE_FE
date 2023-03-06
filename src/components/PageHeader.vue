@@ -1,29 +1,24 @@
 <!-- PageHeader.vue -->
 <template>
-  <header>
-    <div>
-      <br />
-      <div id="nav">
-        <router-link to="/">Home</router-link> |
-        <router-link to="/post">Board</router-link> |
-        <router-link to="/about">About</router-link> |
-        <span v-if="!isLogin">
-          <a href="#" onclick="return false;" @click="showModal('LoginModal')"
-            >Login</a
-          >
-          /
-          <a href="#" onclick="return false;" @click="showModal('SignupModal')"
-            >SignUp</a
-          >
-        </span>
-        <span v-else>
-          <a>MyInfo</a> /
-          <a href="#" onclick="return false;" @click="showModal('LogoutModal')"
-            >Log Out</a
-          >
-        </span>
-      </div>
-    </div>
+  <header id="nav">
+    <router-link to="/">Home</router-link> |
+    <router-link to="/post">Board</router-link> |
+    <router-link to="/about">About</router-link> |
+    <span v-if="!isLogin">
+      <a href="#" onclick="return false;" @click="showModal('LoginModal')"
+        >Login</a
+      >
+      /
+      <a href="#" onclick="return false;" @click="showModal('SignupModal')"
+        >SignUp</a
+      >
+    </span>
+    <span v-else>
+      <a>MyInfo</a> /
+      <a href="#" onclick="return false;" @click="showModal('LogoutModal')"
+        >Log Out</a
+      >
+    </span>
   </header>
 </template>
 
@@ -47,10 +42,11 @@ export default {
 <style scoped>
 #nav {
   margin: auto;
-  max-width: 400px;
+  width: 80%;
+  max-width: 600px;
   padding: 15px;
   background-color: #673ab7;
-  border-radius: 10px;
+  border-radius: 15px;
   margin-bottom: 20px;
 }
 

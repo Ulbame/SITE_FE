@@ -68,27 +68,19 @@ export default {
 
 <style scoped>
 .searchBar {
-  display: table-cell;
-  display: table;
   margin: auto;
   padding: 10px;
   border-radius: 10px;
-  width: 600px;
+  width: 100%;
   background-color: #ede7f6;
 }
 .searchBar .searchOptions {
-  display: table-cell;
-  width: 270px;
-  vertical-align: baseline;
+  display: inline-block;
+  width: 50%;
+  margin-right: 20px;
 }
 .searchBar .searchParams {
   display: inline-block;
-  vertical-align: baseline;
-  width: 200px;
-}
-a,
-i {
-  display: table-cell;
-  vertical-align: middle;
+  width: 40%;
 }
 </style>
